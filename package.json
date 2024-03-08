@@ -1,0 +1,19 @@
+{
+  "name": "taqueria-getting-started-tzcompose-scaffold",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx md README.md"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@taqueria/plugin-flextesa": "0.49.9",
+    "@taqueria/plugin-ligo": "^0.49.9",
+    "@taqueria/plugin-tzcompose": "^0.49.9",
+    "cli-markdown": "^3.2.2"
+  }
+}

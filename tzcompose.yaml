@@ -1,0 +1,49 @@
+version: alpha
+
+pipelines:
+  deploy-contracts:
+
+  - task: deploy
+    alias: member
+    script:
+      code:
+        file: artifacts/Member.json
+      storage:
+        args:
+          "": {}
+
+  - task: deploy
+    alias: increment
+    script:
+      code:
+        file: artifacts/Increment.json
+      storage:
+        args:
+          membershipContract: $member
+          count: 0
+
+  call-member:
+  - task: call
+    destination: $member
+    amount: 1_000_000
+    params:
+      entrypoint: join
+      args:
+        "": ""
+
+  call-increment:
+  - task: call
+    destination: $increment
+    params:
+      entrypoint: increment
+      args:
+        "": ""
+
+  # call-increment-with-alice:
+  # - task: call
+  #   destination: $increment
+  #   source: $alice
+  #   params:
+  #     entrypoint: increment
+  #     args:
+  #       "": ""

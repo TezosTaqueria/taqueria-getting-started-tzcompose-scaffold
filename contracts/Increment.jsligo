@@ -1,0 +1,32 @@
+export type storage = {
+    membershipContract: address,
+    count: int
+}
+
+@entry
+const increment = (_: unit, store: storage) : [list<operation>, storage] => {
+    const status = match (Tezos.call_view("is_member", Tezos.get_sender(), store.membershipContract)) {
+        when(Some(status)): status;
+        when(None): (failwith("Could not determine membership status"))
+    }
+
+    if (status) {
+        return [list([]), {membershipContract: store.membershipContract, count: store.count + 1}]
+    } else {
+        return [list([]), store]
+    }
+}
+
+@entry
+const decrement = (_: unit, store: storage) : [list<operation>, storage] => {
+    const status = match (Tezos.call_view("is_member", Tezos.get_sender(), store.membershipContract)) {
+        when(Some(status)): status;
+        when(None): (failwith("Could not determine membership status"))
+    }
+
+    if (status) {
+        return [list([]), {membershipContract: store.membershipContract, count: store.count - 1}]
+    } else {
+        return [list([]), store]
+    }
+}
