@@ -4,10 +4,10 @@ pipelines:
   deploy-contracts:
 
   - task: deploy
-    alias: member
+    alias: membership
     script:
       code:
-        file: artifacts/Member.json
+        file: artifacts/Membership.json
       storage:
         args:
           "": {}
@@ -19,12 +19,12 @@ pipelines:
         file: artifacts/Increment.json
       storage:
         args:
-          membershipContract: $member
+          membershipContract: $membership
           count: 0
 
   call-member:
   - task: call
-    destination: $member
+    destination: $membership
     amount: 1_000_000
     params:
       entrypoint: join
