@@ -6,9 +6,9 @@ This scaffold is a Taqueria project that demonstrates how to use TzCompose to au
 
 This project focuses on deploying two contracts authored in LIGO, which you will find in the **contracts/** directory:
 
-1. **Increment**: A permissioned version of a contract that maintains an internal counter. The counter can be incremented or decremented using the provided entrypoints. This contract delegates permission checks to members of the Member contract.
+1. **Increment**: A permissioned version of a contract that maintains an internal counter. The counter can be incremented or decremented using the provided entrypoints. This contract delegates permission checks to members of the Membership contract.
 
-2. **Member**: A contract that represents a membership system. Users can join the group by paying 1 tez.
+2. **Membership**: A contract that represents a membership system. Users can join the group by paying 1 tez.
 
 ## TzCompose Configuration
 
