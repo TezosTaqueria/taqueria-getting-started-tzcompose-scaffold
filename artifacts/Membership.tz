@@ -1,0 +1,27 @@
+{ parameter (or (unit %leave) (unit %join)) ;
+  storage (map address bool) ;
+  code { UNPAIR ;
+         IF_LEFT
+           { DROP ; SENDER ; NONE bool ; SWAP ; UPDATE }
+           { DROP ;
+             AMOUNT ;
+             PUSH mutez 1000000 ;
+             SWAP ;
+             COMPARE ;
+             LT ;
+             IF { PUSH string "Insufficient amount of tez" ; FAILWITH } {} ;
+             SENDER ;
+             SWAP ;
+             PUSH bool True ;
+             DIG 2 ;
+             SWAP ;
+             SOME ;
+             SWAP ;
+             UPDATE } ;
+         NIL operation ;
+         PAIR } ;
+  view "is_member"
+       address
+       bool
+       { UNPAIR ; GET ; IF_NONE { PUSH string "MAP FIND" ; FAILWITH } {} } }
+

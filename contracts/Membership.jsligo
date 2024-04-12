@@ -73,7 +73,7 @@ const test_join = () : unit => {
 }
 
 const test_leave = () : unit => {
-    let result = Test.originate(contract_of(Member), Map.empty, 0tez);
+    let result = Test.originate(contract_of(Membership), Map.empty, 0tez);
     let contract = Test.to_contract(result.addr);
     Test.transfer_to_contract(contract, Join(unit), 0tez);
     const status = Test.transfer_to_contract(contract, Leave(unit), 0tez);

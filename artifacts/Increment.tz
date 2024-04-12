@@ -1,0 +1,25 @@
+{ parameter (or (unit %decrement) (unit %increment)) ;
+  storage (pair (address %membershipContract) (int %count)) ;
+  code { UNPAIR ;
+         IF_LEFT
+           { DROP ;
+             DUP ;
+             CAR ;
+             SENDER ;
+             VIEW "is_member" bool ;
+             IF_NONE
+               { PUSH string "Could not determine membership status" ; FAILWITH }
+               {} ;
+             IF { PUSH int 1 ; DUP 2 ; CDR ; SUB ; SWAP ; CAR ; PAIR } {} }
+           { DROP ;
+             DUP ;
+             CAR ;
+             SENDER ;
+             VIEW "is_member" bool ;
+             IF_NONE
+               { PUSH string "Could not determine membership status" ; FAILWITH }
+               {} ;
+             IF { PUSH int 1 ; DUP 2 ; CDR ; ADD ; SWAP ; CAR ; PAIR } {} } ;
+         NIL operation ;
+         PAIR } }
+
