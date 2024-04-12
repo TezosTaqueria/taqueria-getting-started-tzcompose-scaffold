@@ -1,4 +1,4 @@
-namespace Member {
+namespace Membership {
     export type storage = map<address, bool>;
 
     @entry
@@ -38,7 +38,7 @@ namespace Member {
 
 
 const test_join = () : unit => {
-    let result = Test.originate(contract_of(Member), Map.empty, 0tez);
+    let result = Test.originate(contract_of(Membership), Map.empty, 0tez);
     let contract = Test.to_contract(result.addr);
     const status = Test.transfer_to_contract(contract, Join(unit), 1tez);
     const fromAddr = Test.nth_bootstrap_account(1);
