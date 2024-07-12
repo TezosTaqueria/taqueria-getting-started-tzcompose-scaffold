@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@taqueria/plugin-flextesa": "^0.50.0",
-    "@taqueria/plugin-ligo": "^0.50.0",
-    "@taqueria/plugin-tzcompose": "^0.50.0",
+    "@taqueria/plugin-flextesa": "^0.56.0",
+    "@taqueria/plugin-ligo": "^0.56.0",
+    "@taqueria/plugin-tzcompose": "^0.56.0",
     "cli-markdown": "^3.2.2"
   }
 }
