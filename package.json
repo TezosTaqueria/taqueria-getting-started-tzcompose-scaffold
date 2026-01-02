@@ -11,9 +11,9 @@
   "author": "Trilitech",
   "license": "MIT",
   "devDependencies": {
-    "@taqueria/plugin-flextesa": "^0.56.0",
-    "@taqueria/plugin-ligo": "^0.56.0",
-    "@taqueria/plugin-tzcompose": "^0.56.0",
+    "@taqueria/plugin-tezbox": "0.78.11",
+    "@taqueria/plugin-ligo": "0.78.11",
+    "@taqueria/plugin-tzcompose": "0.78.11",
     "cli-markdown": "^3.2.2"
   }
 }

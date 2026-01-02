@@ -38,7 +38,7 @@
     "environmentDefault": "development",
     "environments": {
         "development": {
-            "type": "flextesa",
+            "type": "tezbox",
             "label": "Local Tezos Sandbox",
             "rpcUrl": "http://localhost:20000"
         },
@@ -64,7 +64,7 @@
         },
         {
             "type": "npm",
-            "name": "@taqueria/plugin-flextesa"
+            "name": "@taqueria/plugin-tezbox"
         }
     ]
 }
