@@ -38,53 +38,53 @@ namespace Membership {
 
 
 const test_join = () : unit => {
-    let result = Test.originate(contract_of(Membership), Map.empty, 0tez);
-    let contract = Test.to_contract(result.addr);
-    const status = Test.transfer_to_contract(contract, Join(unit), 1tez);
-    const fromAddr = Test.nth_bootstrap_account(1);
+    let result = Test.Next.Originate.contract(contract_of(Membership), Map.empty, 0tez);
+    let contract = Test.Next.Typed_address.to_contract(result.taddr);
+    const status = Test.Next.Contract.transfer(contract, Join(unit), 1tez);
+    const fromAddr = Test.Next.Account.address(1);
     match(status) {
         when(Success(_)): do {
-            assert(true);
+            Assert.assert(true);
 
             // Get expected and actual values for storage
             let expected: map<address, bool> = Map.empty;
             expected = Map.add(fromAddr, true, expected);
-            const actual = Test.get_storage(result.addr);
+            const actual = Test.Next.Typed_address.get_storage(result.taddr);
 
             // Debug actual and expected values
-            // Test.print(Test.to_json(expected));
-            // Test.print("\n");
-            // Test.print(Test.to_json(actual));
-            // Test.print("\n");
+            // Test.Next.IO.print(Test.Next.Michelson.to_json(expected));
+            // Test.Next.IO.print("\n");
+            // Test.Next.IO.print(Test.Next.Michelson.to_json(actual));
+            // Test.Next.IO.print("\n");
 
             // Assert that expected storage is equal to the actual storage
-            assert(Test.equal(expected, actual));
-            
+            Assert.assert(Test.Next.Compare.eq(expected, actual));
+
             // Assert that is_member view works as expected
-            const addr = Test.to_address(result.addr);
+            const addr = Test.Next.Typed_address.to_address(result.taddr);
             const viewResult: option<bool> = Tezos.call_view("is_member", Tezos.get_sender(), addr);
             match(viewResult) {
-                when(Some(_)): assert(true);
-                when(_): assert(false);
+                when(Some(_)): Assert.assert(true);
+                when(_): Assert.assert(false);
             }
         }
-        when(_): assert(false);
+        when(_): Assert.assert(false);
     }
 }
 
 const test_leave = () : unit => {
-    let result = Test.originate(contract_of(Membership), Map.empty, 0tez);
-    let contract = Test.to_contract(result.addr);
-    Test.transfer_to_contract(contract, Join(unit), 0tez);
-    const status = Test.transfer_to_contract(contract, Leave(unit), 0tez);
+    let result = Test.Next.Originate.contract(contract_of(Membership), Map.empty, 0tez);
+    let contract = Test.Next.Typed_address.to_contract(result.taddr);
+    Test.Next.Contract.transfer(contract, Join(unit), 0tez);
+    const status = Test.Next.Contract.transfer(contract, Leave(unit), 0tez);
     match(status) {
         when(Success(_)): do {
-            assert(true);
+            Assert.assert(true);
             const expected: map<address, bool> = Map.empty;
-            const actual = Test.get_storage(result.addr);
-            assert(Test.equal(expected, actual));
+            const actual = Test.Next.Typed_address.get_storage(result.taddr);
+            Assert.assert(Test.Next.Compare.eq(expected, actual));
         }
-        when(_): assert(false);
+        when(_): Assert.assert(false);
     }
 }
 
